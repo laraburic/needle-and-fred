@@ -6,9 +6,14 @@ public class DragAndDrop : MonoBehaviour
 {
     Vector3 mousePosition;
     public static bool mouseButtonReleased;
+    private Camera playerCamera;
+
+    private void Start() {
+        playerCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+    }
     private Vector3 GetMousePos()
     {
-        return Camera.main.WorldToScreenPoint(transform.position);
+        return playerCamera.WorldToScreenPoint(transform.position);
     }
 
     private void OnMouseDown()
@@ -18,7 +23,7 @@ public class DragAndDrop : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
+        transform.position = playerCamera.ScreenToWorldPoint(Input.mousePosition - mousePosition);
     }
 
     private void OnMouseUp()
