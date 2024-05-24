@@ -396,7 +396,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Celina Bass \nLara Buric \nMike Okeke \nMax Webster \nSarah York"
+  m_Text: "Celina Basa \nLara Buric \nMike Okeke \nMax Webster \nSarah York"
 --- !u!222 &311839996
 CanvasRenderer:
   m_ObjectHideFlags: 0
