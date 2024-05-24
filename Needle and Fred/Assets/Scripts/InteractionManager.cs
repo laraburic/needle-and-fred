@@ -9,6 +9,9 @@ public class InteractionManager : MonoBehaviour
     private GameObject selectedIngredient;
     private Camera playerCamera;
     private Vector3 originalPosition;
+    // highlight equipment logic
+    private GameObject highlightedEquipment;
+    private GameObject lastHighlightedEquipment;
 
     [Tooltip("Height of object when picked up")]
     public float heightOffset;
@@ -21,11 +24,43 @@ public class InteractionManager : MonoBehaviour
     public LayerMask ingredientLayer;
     public LayerMask ritualLayer;
 
+    //=== START
+    
     private void Start() {
         playerCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
     }
 
+    //=== FUNCTIONS
+    
+    void ActivateHighlight() {
+        if (highlightedEquipment.GetComponent<Outline>()) {
+            highlightedEquipment.GetComponent<Outline>().enabled = true;
+            lastHighlightedEquipment = highlightedEquipment;
+        }
+    }
+    void DeactivateHighlight() {
+        if (lastHighlightedEquipment != null) {
+            if (lastHighlightedEquipment.GetComponent<Outline>() != null){
+                lastHighlightedEquipment.GetComponent<Outline>().enabled = false;
+            }
+        }
+    }
+    
+    //=== UPDATE
+
     private void Update() {
+        
+        // Highlight object functionality ----
+        RaycastHit highlightHit = CastRay(equipmentLayer);
+        if (highlightHit.collider != null) {
+            highlightedEquipment = highlightHit.collider.gameObject;
+            ActivateHighlight();
+        }
+        else {
+            highlightedEquipment = null;
+            DeactivateHighlight();
+        }
+        // ----------------------------------
         
         if (Input.GetMouseButtonDown(0)) {
             if (selectedEquipment == null) {
@@ -33,10 +68,10 @@ public class InteractionManager : MonoBehaviour
 
                 if (hit.collider != null) {
                     Debug.Log("Picking up: " + hit.collider.gameObject.name);
-
                     selectedEquipment = hit.collider.gameObject;
+                    ActivateHighlight();
                     originalPosition = selectedEquipment.transform.position;
-                    Cursor.visible = false;
+                    Cursor.visible = true;
                 }
 
             } else {

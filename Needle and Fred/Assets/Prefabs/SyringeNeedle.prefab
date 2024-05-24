@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 2868765295295517167}
   - component: {fileID: 328627603053951561}
   - component: {fileID: 8228807808267616014}
+  - component: {fileID: 5405127659196657927}
   m_Layer: 3
   m_Name: SyringeNeedle
   m_TagString: SyringeNeedle
@@ -276,6 +277,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0000001, y: 78.89161, z: 1.0000002}
   m_Center: {x: 0.00000004000956, y: 38.445797, z: -0.00000008001912}
+--- !u!114 &5405127659196657927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3683363332345945895}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0, b: 0.85647964, a: 1}
+  outlineWidth: 6.8
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &4281864773136587120
 GameObject:
   m_ObjectHideFlags: 0
