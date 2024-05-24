@@ -3,16 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Equipment
+  - SyringeNeedle
+  - SewingNeedle
+  - Potion
+  - Thread
+  - DeadBody
+  - Discard
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Equipment
   - Water
   - UI
-  - 
-  - 
+  - Ingredient
+  - Ritual
   - 
   - 
   - 
