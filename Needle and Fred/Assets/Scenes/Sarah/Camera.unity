@@ -132,7 +132,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1455841186}
   - component: {fileID: 1455841185}
-  - component: {fileID: 1455841184}
   - component: {fileID: 1455841187}
   m_Layer: 0
   m_Name: MainCamera
@@ -141,14 +140,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1455841184
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1455841183}
-  m_Enabled: 1
 --- !u!20 &1455841185
 Camera:
   m_ObjectHideFlags: 0
