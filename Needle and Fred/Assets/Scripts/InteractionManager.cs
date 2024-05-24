@@ -100,12 +100,20 @@ public class InteractionManager : MonoBehaviour
                         if (selectedEquipment.CompareTag("SyringeNeedle") && hit.collider.gameObject.CompareTag("Potion")) {
                             selectedIngredient = hit.collider.gameObject;
                             selectedEquipment.GetComponent<MeshRenderer>().material = selectedIngredient.GetComponent<MeshRenderer>().material;
+                            // If the object has child game objects, update all of the colours on the children as well 
+                            if (selectedEquipment.GetComponent<UpdateColoursOnChildren>() != null) {
+                                selectedEquipment.GetComponent<UpdateColoursOnChildren>().UpdateChildColours(selectedIngredient.GetComponent<MeshRenderer>().material);
+                            }
                         } 
 
                         // SewingNeedle can only interact with Thread
                         else if (selectedEquipment.CompareTag("SewingNeedle") && hit.collider.gameObject.CompareTag("Thread")) {
                             selectedIngredient = hit.collider.gameObject;
                             selectedEquipment.GetComponent<MeshRenderer>().material = selectedIngredient.GetComponent<MeshRenderer>().material;
+                            // If the object has child game objects, update all of the colours on the children as well 
+                            if (selectedEquipment.GetComponent<UpdateColoursOnChildren>() != null) {
+                                selectedEquipment.GetComponent<UpdateColoursOnChildren>().UpdateChildColours(selectedIngredient.GetComponent<MeshRenderer>().material);
+                            }
                         }
                         
                     } else {
@@ -127,13 +135,19 @@ public class InteractionManager : MonoBehaviour
                         selectedIngredient = null;
                         if (selectedEquipment.CompareTag("SyringeNeedle")) {
                             selectedEquipment.GetComponent<MeshRenderer>().material = emptySyringeNeedleMaterial;
+                            // If the object has child game objects, update all of the colours on the children as well 
+                            if (selectedEquipment.GetComponent<UpdateColoursOnChildren>() != null) {
+                                selectedEquipment.GetComponent<UpdateColoursOnChildren>().UpdateChildColours(emptySyringeNeedleMaterial);
+                            }
                         } else if (selectedEquipment.CompareTag("SewingNeedle")) {
                             selectedEquipment.GetComponent<MeshRenderer>().material = emptySewingNeedleMaterial;
+                            // If the object has child game objects, update all of the colours on the children as well 
+                            if (selectedEquipment.GetComponent<UpdateColoursOnChildren>() != null) {
+                                selectedEquipment.GetComponent<UpdateColoursOnChildren>().UpdateChildColours(emptySyringeNeedleMaterial);
+                            }
                         }
                     }
                 }
-
-
             }
         }
 
