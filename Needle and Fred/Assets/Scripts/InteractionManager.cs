@@ -23,6 +23,7 @@ public class InteractionManager : MonoBehaviour
     public LayerMask equipmentLayer;
     public LayerMask ingredientLayer;
     public LayerMask ritualLayer;
+    public LayerMask allObjectsLayer;
 
     //=== START
     
@@ -45,57 +46,74 @@ public class InteractionManager : MonoBehaviour
             }
         }
     }
+
+    void HighlightObjectsInLayer(LayerMask layer) {
+        RaycastHit highlightHit = CastRay(layer);
+        if (highlightHit.collider != null) {
+            highlightedEquipment = highlightHit.collider.gameObject;
+            ActivateHighlight();
+        } else {
+            highlightedEquipment = null;
+            DeactivateHighlight();
+        }
+    }
+
+    void EnableOutlineObjects() {
+        if (selectedEquipment == null) {
+            HighlightObjectsInLayer(equipmentLayer);
+        } else if (selectedIngredient == null) {
+            HighlightObjectsInLayer(ingredientLayer);
+        } else {
+            HighlightObjectsInLayer(ritualLayer);
+        }
+    }
     
     //=== UPDATE
 
     private void Update() {
-        
+
         // Highlight object functionality ----
-        RaycastHit highlightHit = CastRay(equipmentLayer);
-        if (highlightHit.collider != null) {
-            highlightedEquipment = highlightHit.collider.gameObject;
-            ActivateHighlight();
-        }
-        else {
-            highlightedEquipment = null;
-            DeactivateHighlight();
-        }
+        EnableOutlineObjects();
         // ----------------------------------
-        
+
         if (Input.GetMouseButtonDown(0)) {
             if (selectedEquipment == null) {
+
+                // If equipment is not currently being held, check for interaction with equipment
                 RaycastHit hit = CastRay(equipmentLayer);
 
                 if (hit.collider != null) {
                     Debug.Log("Picking up: " + hit.collider.gameObject.name);
                     selectedEquipment = hit.collider.gameObject;
-                    ActivateHighlight();
                     originalPosition = selectedEquipment.transform.position;
-                    Cursor.visible = true;
                 }
 
             } else {
                 if (selectedIngredient == null) {
+                    // If equipment is currently being held, check for interaction with ingredients
                     RaycastHit hit = CastRay(ingredientLayer);
 
                     if (hit.collider != null) {
                         Debug.Log("Interacting with ingredient: " + hit.collider.gameObject.name);
 
+                        // SyringeNeedle can only interact with Potions
                         if (selectedEquipment.CompareTag("SyringeNeedle") && hit.collider.gameObject.CompareTag("Potion")) {
                             selectedIngredient = hit.collider.gameObject;
                             selectedEquipment.GetComponent<MeshRenderer>().material = selectedIngredient.GetComponent<MeshRenderer>().material;
-                        } else if (selectedEquipment.CompareTag("SewingNeedle") && hit.collider.gameObject.CompareTag("Thread")) {
+                        } 
+
+                        // SewingNeedle can only interact with Thread
+                        else if (selectedEquipment.CompareTag("SewingNeedle") && hit.collider.gameObject.CompareTag("Thread")) {
                             selectedIngredient = hit.collider.gameObject;
                             selectedEquipment.GetComponent<MeshRenderer>().material = selectedIngredient.GetComponent<MeshRenderer>().material;
                         }
                         
                     } else {
+                        // Put equipment back down on table if no ingredient clicked
                         Debug.Log("No ingredient detected");
 
                         selectedEquipment.transform.position = originalPosition;
-
                         selectedEquipment = null;
-                        Cursor.visible = true;
                     }
 
                 } else {
@@ -119,6 +137,7 @@ public class InteractionManager : MonoBehaviour
             }
         }
 
+        // Pick up equipment at heightOffset if currently selected
         if (selectedEquipment != null) {
             MoveObject(heightOffset);
         }
