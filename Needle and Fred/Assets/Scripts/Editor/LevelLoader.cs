@@ -12,6 +12,7 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : EditorWindow
 {
     // MAKE A CHANGE - copy and paste any of these lines for any additional scripts
+    public string StartScreenScene = "Assets/Scenes/Sarah/StartScreen.unity";
     public string cameraLightsScene = "Assets/Scenes/Sarah/Camera.unity";
     public string environmentScene = "Assets/Scenes/Sarah/Environment.unity";
     public string mikeScene = "Assets/Scenes/Mike/Mike.unity";
