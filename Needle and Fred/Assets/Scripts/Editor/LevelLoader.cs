@@ -16,6 +16,7 @@ public class LevelLoader : EditorWindow
     public string environmentScene = "Assets/Scenes/Sarah/Environment.unity";
     public string mikeScene = "Assets/Scenes/Mike/Mike.unity";
     public string celinaScene = "Assets/Scenes/Celina/Celina.unity";
+    public string laraScene = "Assets/Scenes/Lara/Lara.unity";
     
     [MenuItem("TeamSpinnySword/Level Loader")]
     public static void ShowWindow()
@@ -31,6 +32,7 @@ public class LevelLoader : EditorWindow
         environmentScene = EditorGUILayout.TextField("Path to env scene", environmentScene);
         mikeScene = EditorGUILayout.TextField("Path to Mike's scene", mikeScene);
         celinaScene = EditorGUILayout.TextField("Path to Celina's scene", celinaScene);
+        laraScene = EditorGUILayout.TextField("Path to Lara's scene", laraScene);
         
         EditorGUILayout.Space(10);
         if (GUILayout.Button("Load Scenes"))
@@ -46,6 +48,7 @@ public class LevelLoader : EditorWindow
                 EditorSceneManager.OpenScene(environmentScene, OpenSceneMode.Additive);
                 EditorSceneManager.OpenScene(mikeScene, OpenSceneMode.Additive);
                 EditorSceneManager.OpenScene(celinaScene, OpenSceneMode.Additive);
+                EditorSceneManager.OpenScene(laraScene, OpenSceneMode.Additive);
             }
         }
     }
