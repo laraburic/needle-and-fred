@@ -27,11 +27,14 @@ public class InteractionManager : MonoBehaviour
     public LayerMask ritualLayer;
     public LayerMask allObjectsLayer;
 
+    private GameObject puzzleManager;
+
     //=== START
-    
+
     private void Start() {
         playerCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         catPaw = GameObject.Find("CatPawCursor_Handle");
+        puzzleManager = GameObject.Find("PuzzleManager");
     }
 
     //=== FUNCTIONS
@@ -145,8 +148,12 @@ public class InteractionManager : MonoBehaviour
 
                     if (hit.collider != null) {
 
-                        // ADD LOGIC FOR INTERACTING WITH DEAD BODY
                         Debug.Log("Interacting with ritual object: " + hit.collider.gameObject.name);
+
+                        if (hit.collider.gameObject.CompareTag("DeadBody")) {
+
+                            puzzleManager.GetComponent<PuzzleManager>().CheckStep(selectedIngredient.GetComponent<IngredientComponent>().ingredientType);
+                        }
 
                         // Ingredient selected with equipment is consumed upon use with any ritual object
                         selectedIngredient = null;
