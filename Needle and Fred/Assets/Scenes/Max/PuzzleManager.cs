@@ -72,9 +72,9 @@ public class PuzzleManager : MonoBehaviour
                 else
                 {
                     // turn off candle, player feedback etc.
-                    // candles[candlesLeft-1].GameObject.SetActive(false);
                     candlesLeft --;
                     Debug.Log("One candle has gone out...");
+                    // FUNCTION TO BLOW OUT ONE CANDLE HERE
                 }
             }
         }
