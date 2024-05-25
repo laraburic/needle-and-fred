@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
+using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
 public class InteractionManager : MonoBehaviour
 {
     private GameObject selectedEquipment;
     private GameObject selectedIngredient;
+    private GameObject catPaw;
     private Camera playerCamera;
     private Vector3 originalPosition;
     // highlight equipment logic
@@ -29,6 +31,7 @@ public class InteractionManager : MonoBehaviour
     
     private void Start() {
         playerCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+        catPaw = GameObject.Find("CatPawCursor_Handle");
     }
 
     //=== FUNCTIONS
@@ -71,6 +74,8 @@ public class InteractionManager : MonoBehaviour
     //=== UPDATE
 
     private void Update() {
+        // Function to get cat paw object to follow cursor
+        FollowCursor(catPaw);
 
         // Highlight object functionality ----
         EnableOutlineObjects();
@@ -99,20 +104,20 @@ public class InteractionManager : MonoBehaviour
                         // SyringeNeedle can only interact with Potions
                         if (selectedEquipment.CompareTag("SyringeNeedle") && hit.collider.gameObject.CompareTag("Potion")) {
                             selectedIngredient = hit.collider.gameObject;
-                            selectedEquipment.GetComponent<MeshRenderer>().material = selectedIngredient.GetComponent<MeshRenderer>().material;
+                            selectedEquipment.GetComponentInChildren<MeshRenderer>().material = selectedIngredient.GetComponent<MeshRenderer>().material;
                             // If the object has child game objects, update all of the colours on the children as well 
-                            if (selectedEquipment.GetComponent<UpdateColoursOnChildren>() != null) {
-                                selectedEquipment.GetComponent<UpdateColoursOnChildren>().UpdateChildColours(selectedIngredient.GetComponent<MeshRenderer>().material);
+                            if (selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>() != null) {
+                                selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>().UpdateChildColours(selectedIngredient.GetComponent<MeshRenderer>().material);
                             }
                         } 
 
                         // SewingNeedle can only interact with Thread
                         else if (selectedEquipment.CompareTag("SewingNeedle") && hit.collider.gameObject.CompareTag("Thread")) {
                             selectedIngredient = hit.collider.gameObject;
-                            selectedEquipment.GetComponent<MeshRenderer>().material = selectedIngredient.GetComponent<MeshRenderer>().material;
+                            selectedEquipment.GetComponentInChildren<MeshRenderer>().material = selectedIngredient.GetComponent<MeshRenderer>().material;
                             // If the object has child game objects, update all of the colours on the children as well 
-                            if (selectedEquipment.GetComponent<UpdateColoursOnChildren>() != null) {
-                                selectedEquipment.GetComponent<UpdateColoursOnChildren>().UpdateChildColours(selectedIngredient.GetComponent<MeshRenderer>().material);
+                            if (selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>() != null) {
+                                selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>().UpdateChildColours(selectedIngredient.GetComponent<MeshRenderer>().material);
                             }
                         }
                         
@@ -125,25 +130,27 @@ public class InteractionManager : MonoBehaviour
                     }
 
                 } else {
+                    // If equipment is currently being held AND ingredient has been selected, check for interaction with ritual objects
                     RaycastHit hit = CastRay(ritualLayer);
 
                     if (hit.collider != null) {
 
-                        //ADD LOGIC FOR INTERACTING WITH DEAD BODY
-
+                        // ADD LOGIC FOR INTERACTING WITH DEAD BODY
                         Debug.Log("Interacting with ritual object: " + hit.collider.gameObject.name);
+
+                        // Ingredient selected with equipment is consumed upon use with any ritual object
                         selectedIngredient = null;
                         if (selectedEquipment.CompareTag("SyringeNeedle")) {
-                            selectedEquipment.GetComponent<MeshRenderer>().material = emptySyringeNeedleMaterial;
+                            selectedEquipment.GetComponentInChildren<MeshRenderer>().material = emptySyringeNeedleMaterial;
                             // If the object has child game objects, update all of the colours on the children as well 
-                            if (selectedEquipment.GetComponent<UpdateColoursOnChildren>() != null) {
-                                selectedEquipment.GetComponent<UpdateColoursOnChildren>().UpdateChildColours(emptySyringeNeedleMaterial);
+                            if (selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>() != null) {
+                                selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>().UpdateChildColours(emptySyringeNeedleMaterial);
                             }
                         } else if (selectedEquipment.CompareTag("SewingNeedle")) {
-                            selectedEquipment.GetComponent<MeshRenderer>().material = emptySewingNeedleMaterial;
+                            selectedEquipment.GetComponentInChildren<MeshRenderer>().material = emptySewingNeedleMaterial;
                             // If the object has child game objects, update all of the colours on the children as well 
-                            if (selectedEquipment.GetComponent<UpdateColoursOnChildren>() != null) {
-                                selectedEquipment.GetComponent<UpdateColoursOnChildren>().UpdateChildColours(emptySyringeNeedleMaterial);
+                            if (selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>() != null) {
+                                selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>().UpdateChildColours(emptySyringeNeedleMaterial);
                             }
                         }
                     }
@@ -153,18 +160,21 @@ public class InteractionManager : MonoBehaviour
 
         // Pick up equipment at heightOffset if currently selected
         if (selectedEquipment != null) {
-            MoveObject(heightOffset);
+            FollowCursor(selectedEquipment);
         }
     }
 
-    private void MoveObject(float heightOffset) {
-        Vector3 position = new Vector3(
-    Input.mousePosition.x,
-    Input.mousePosition.y,
-    playerCamera.WorldToScreenPoint(selectedEquipment.transform.position).z);
-        Vector3 worldPosition = playerCamera.ScreenToWorldPoint(position);
-        selectedEquipment.transform.position = new Vector3(worldPosition.x, heightOffset, worldPosition.z);
+    private void FollowCursor(GameObject objectToFollow) {
+        if (objectToFollow) {
+            Vector3 position = new Vector3(
+            Input.mousePosition.x,
+            Input.mousePosition.y,
+                playerCamera.WorldToScreenPoint(objectToFollow.transform.position).z);
+            Vector3 worldPosition = playerCamera.ScreenToWorldPoint(position);
+            objectToFollow.transform.position = new Vector3(worldPosition.x, heightOffset, worldPosition.z);
+        }
     }
+
 
     private RaycastHit CastRay(LayerMask layer) {
         Vector3 screenMousePosFar = new Vector3(
