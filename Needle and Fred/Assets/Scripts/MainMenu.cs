@@ -8,8 +8,13 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         Debug.Log("Game Start");
-        FindObjectOfType<AudioManager>().Play("WitchStart");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void PlayWitch()
+    {
+        Debug.Log("Playing Witch Sound");
+        FindObjectOfType<AudioManager>().Play("WitchStart");
     }
 
     public void QuitGame()

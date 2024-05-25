@@ -31,6 +31,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         GameIsPaused = true;
         AudioListener.pause = true;
+        FindObjectOfType<AudioManager>().Play("PauseGame");
     }
 
     public void Resume()
@@ -39,18 +40,24 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         GameIsPaused = false;
         AudioListener.pause = false;
+        FindObjectOfType<AudioManager>().Play("ResumeGame");
+
     }
 
     public void LoadMenu()
     {
         Debug.Log("Loading Menu...");
         SceneManager.LoadScene(0);
+        AudioListener.pause = false;
+        FindObjectOfType<AudioManager>().Play("ReturnToMenu");
     }
 
     public void LoadCredits()
     {
         Debug.Log("Loading Credits...");
         SceneManager.LoadScene(2);
+        AudioListener.pause = false;
+        FindObjectOfType<AudioManager>().Play("GoToCredits");
     }
 
     public void QuitGame()

@@ -97,6 +97,7 @@ public class InteractionManager : MonoBehaviour
                     Debug.Log("Picking up: " + hit.collider.gameObject.name);
                     selectedEquipment = hit.collider.gameObject;
                     originalPosition = selectedEquipment.transform.position;
+                    FindObjectOfType<AudioManager>().Play("ToolPickup");
                 }
 
             } else {
@@ -111,6 +112,7 @@ public class InteractionManager : MonoBehaviour
                         if (selectedEquipment.CompareTag("SyringeNeedle") && hit.collider.gameObject.CompareTag("Potion")) {
                             selectedIngredient = hit.collider.gameObject;
                             selectedEquipment.GetComponentInChildren<MeshRenderer>().material = selectedIngredient.GetComponent<MeshRenderer>().material;
+                            FindObjectOfType<AudioManager>().Play("LiquidPickup");
                             // If the object has child game objects, update all of the colours on the children as well 
                             if (selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>() != null) {
                                 selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>().UpdateChildColours(selectedIngredient.GetComponent<MeshRenderer>().material);
@@ -121,6 +123,7 @@ public class InteractionManager : MonoBehaviour
                         else if (selectedEquipment.CompareTag("SewingNeedle") && hit.collider.gameObject.CompareTag("Thread")) {
                             selectedIngredient = hit.collider.gameObject;
                             selectedEquipment.GetComponentInChildren<MeshRenderer>().material = selectedIngredient.GetComponent<MeshRenderer>().material;
+                           /* FindObjectOfType<AudioManager>().Play("");*/
                             // If the object has child game objects, update all of the colours on the children as well 
                             if (selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>() != null) {
                                 selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>().UpdateChildColours(selectedIngredient.GetComponent<MeshRenderer>().material);
@@ -133,6 +136,7 @@ public class InteractionManager : MonoBehaviour
 
                         selectedEquipment.transform.position = originalPosition;
                         selectedEquipment = null;
+                        FindObjectOfType<AudioManager>().Play("ToolPutdown");
                     }
 
                 } else {
@@ -148,12 +152,14 @@ public class InteractionManager : MonoBehaviour
                         selectedIngredient = null;
                         if (selectedEquipment.CompareTag("SyringeNeedle")) {
                             selectedEquipment.GetComponentInChildren<MeshRenderer>().material = emptySyringeNeedleMaterial;
+                            FindObjectOfType<AudioManager>().Play("LiquidPutdown");
                             // If the object has child game objects, update all of the colours on the children as well 
                             if (selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>() != null) {
                                 selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>().UpdateChildColours(emptySyringeNeedleMaterial);
                             }
                         } else if (selectedEquipment.CompareTag("SewingNeedle")) {
                             selectedEquipment.GetComponentInChildren<MeshRenderer>().material = emptySewingNeedleMaterial;
+                            FindObjectOfType<AudioManager>().Play("SewingPutdown");
                             // If the object has child game objects, update all of the colours on the children as well 
                             if (selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>() != null) {
                                 selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>().UpdateChildColours(emptySyringeNeedleMaterial);
