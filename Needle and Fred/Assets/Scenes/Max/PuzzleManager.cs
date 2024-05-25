@@ -92,8 +92,6 @@ public class PuzzleManager : MonoBehaviour
 
     void BlowOutCandle(int candleIndex)
 {
-    //if (candleIndex >= 0)
-    //{
         candleFlames[candleIndex].SetActive(false);
         candleSmokes[candleIndex].SetActive(true);
         
@@ -103,7 +101,6 @@ public class PuzzleManager : MonoBehaviour
         {
             audioSource.Play();
         }
-    //}
 }
 
     // Display current step in recipe by spawning that object
