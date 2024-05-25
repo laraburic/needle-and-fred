@@ -74,17 +74,17 @@ public class PuzzleManager : MonoBehaviour
             else
             {
                 Debug.Log("WRONG INGREDIENT");
-                 // If no more candles are lit, trigger game over state
+
+                // Blow out candle when wrong ingredient selected
+                BlowOutCandle(candlesLeft - 1);
+                candlesLeft--;
+                Debug.Log("One candle has gone out..." + candlesLeft + " candles remaining");
+
+                // If no more candles are lit, trigger game over state
                 if (candlesLeft == 0)
                 {
                     Debug.Log("No more candles are lit - GAME OVER");
                     puzzleEnabled = false;
-                }
-                else
-                {
-                    candlesLeft--;
-                    Debug.Log("One candle has gone out...");
-                    BlowOutCandle(candlesLeft);
                 }
             }
         }
@@ -92,8 +92,8 @@ public class PuzzleManager : MonoBehaviour
 
     void BlowOutCandle(int candleIndex)
 {
-    if (candleIndex >= 0 && candleIndex < candleFlames.Count)
-    {
+    //if (candleIndex >= 0)
+    //{
         candleFlames[candleIndex].SetActive(false);
         candleSmokes[candleIndex].SetActive(true);
         
@@ -103,11 +103,7 @@ public class PuzzleManager : MonoBehaviour
         {
             audioSource.Play();
         }
-    }
-    else
-    {
-        Debug.LogWarning("Candle index out of range: " + candleIndex);
-    }
+    //}
 }
 
     // Display current step in recipe by spawning that object
