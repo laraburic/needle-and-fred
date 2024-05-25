@@ -53,7 +53,13 @@ public class InteractionManager : MonoBehaviour
     void HighlightObjectsInLayer(LayerMask layer) {
         RaycastHit highlightHit = CastRay(layer);
         if (highlightHit.collider != null) {
-            highlightedEquipment = highlightHit.collider.gameObject;
+            
+            // For equipment object, the visible model is first child object ending in '_Model'
+            if (layer == equipmentLayer) {
+                highlightedEquipment = highlightHit.collider.gameObject.transform.GetChild(0).gameObject;
+            } else {
+                highlightedEquipment = highlightHit.collider.gameObject;
+            }
             ActivateHighlight();
         } else {
             highlightedEquipment = null;
