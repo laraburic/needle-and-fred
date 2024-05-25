@@ -23,7 +23,7 @@ public class PuzzleManager : MonoBehaviour
     {
         // Get current level into manager, set currentStep as 0
         levelNumber = 0;
-        currentLevel = levels.levels[levelNumber];
+        currentLevel = levels.recipes[levelNumber];
         currentStep = 0;
         candlesLeft = candles.Length; // Initialize candles left based on array length
 
@@ -84,7 +84,7 @@ public class PuzzleManager : MonoBehaviour
                 {
                     candlesLeft--;
                     Debug.Log("One candle has gone out...");
-                    BlowOutCandle(candlesLeft);
+                    BlowOutCandle(candlesLeft - 1);
                 }
             }
         }
@@ -116,9 +116,9 @@ public class PuzzleManager : MonoBehaviour
         // Move to next level
         levelNumber++;
         // Check if there is another level, otherwise game is complete
-        if (levelNumber < levels.levels.Count)
+        if (levelNumber < levels.recipes.Count)
         {
-            currentLevel = levels.levels[levelNumber];
+            currentLevel = levels.recipes[levelNumber];
             currentStep = 0;
             DisplayIngredient();
             // Reset candles for the new level

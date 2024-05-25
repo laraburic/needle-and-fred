@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu]
 public class LevelListSO : ScriptableObject
 {
-    public List<LevelDataSO> levels;
+    public List<LevelDataSO> recipes;
 }
