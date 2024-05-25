@@ -3,7 +3,11 @@ guid: 0203954313264984daf62848f43a36f0
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - levels: {instanceID: 0}
+  - displaySpawn: {instanceID: 0}
+  - flamePrefab: {fileID: 5627631891330748425, guid: a131523bdb2fa4417abcc2dee5bf2e0f, type: 3}
+  - smokePrefab: {fileID: 9071187108008226161, guid: ad9d34491a43a400c9861b431347e4b0, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
