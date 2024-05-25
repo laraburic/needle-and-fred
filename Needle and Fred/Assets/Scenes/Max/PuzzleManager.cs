@@ -34,9 +34,9 @@ public class PuzzleManager : MonoBehaviour
             GameObject flame = Instantiate(flamePrefab, candles[i].transform);
             GameObject smoke = Instantiate(smokePrefab, candles[i].transform);
 
-            // Position the particle systems (optional, if they need specific offsets)
-        flame.transform.localPosition = Vector3.zero; // Adjust based on the prefab setup
-        smoke.transform.localPosition = Vector3.zero; // Adjust based on the prefab setup
+            // Position the particle systems with a slight offset along the Y-axis
+            flame.transform.localPosition = new Vector3(0f, 1.5f, 0f); // Adjust the Y value as needed
+            smoke.transform.localPosition = new Vector3(0f, 1.5f, 0f); // Adjust the Y value as needed
         
             smoke.SetActive(false); // Disable smoke initially
 
