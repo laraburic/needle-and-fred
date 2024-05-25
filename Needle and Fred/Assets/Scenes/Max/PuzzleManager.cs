@@ -91,17 +91,24 @@ public class PuzzleManager : MonoBehaviour
     }
 
     void BlowOutCandle(int candleIndex)
+{
+    if (candleIndex >= 0 && candleIndex < candleFlames.Count)
     {
-        if (candleIndex >= 0 && candleIndex < candleFlames.Count)
+        candleFlames[candleIndex].SetActive(false);
+        candleSmokes[candleIndex].SetActive(true);
+        
+        // Play the audio clip when the candle's flame goes out
+        AudioSource audioSource = candles[candleIndex].GetComponent<AudioSource>();
+        if (audioSource != null)
         {
-            candleFlames[candleIndex].SetActive(false);
-            candleSmokes[candleIndex].SetActive(true);
-        }
-        else
-        {
-            Debug.LogWarning("Candle index out of range: " + candleIndex);
+            audioSource.Play();
         }
     }
+    else
+    {
+        Debug.LogWarning("Candle index out of range: " + candleIndex);
+    }
+}
 
     // Display current step in recipe by spawning that object
     void DisplayIngredient()
