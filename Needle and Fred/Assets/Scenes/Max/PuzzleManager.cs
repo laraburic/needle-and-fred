@@ -84,7 +84,7 @@ public class PuzzleManager : MonoBehaviour
                 {
                     candlesLeft--;
                     Debug.Log("One candle has gone out...");
-                    BlowOutCandle(candlesLeft - 1);
+                    BlowOutCandle(candlesLeft);
                 }
             }
         }
