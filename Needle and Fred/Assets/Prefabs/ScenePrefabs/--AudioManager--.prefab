@@ -53,7 +53,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: PauseGame
     clip: {fileID: 8300000, guid: dca3084cb66e8824bab682c584bec504, type: 3}
-    volume: 1
+    volume: 0.78
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -65,91 +65,92 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: ReturnToMenu
     clip: {fileID: 8300000, guid: 311ed1f1bf2aa1847b8f10462f75982f, type: 3}
-    volume: 1
+    volume: 0.78
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: CatSuccess
     clip: {fileID: 8300000, guid: 4cfdea4fbcfd1bb40b8028c0f46e07e4, type: 3}
-    volume: 1
+    volume: 0.78
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: CandleComplete
     clip: {fileID: 8300000, guid: 7a0e506843cfcce45badcb4137eb0731, type: 3}
-    volume: 1
+    volume: 0.78
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: CandleFail
     clip: {fileID: 8300000, guid: 1689058eeeb072842b8c76940508c2a7, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: RandomLaugh
-    clip: {fileID: 8300000, guid: 08b4ba6cd22a9ab4986a13fff034f354, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: RandomShh
-    clip: {fileID: 8300000, guid: 57f5f9fc49e59cb4ca4ae0d069d09f33, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: RandomGhost
-    clip: {fileID: 8300000, guid: 410eeb4da8e5d5e479b65b68e7b997c2, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: RandomBreath
-    clip: {fileID: 8300000, guid: af6edb08e1f686041a968120f681aff9, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: RandomWhisper
-    clip: {fileID: 8300000, guid: 727c90cef4c97c545a8860dda29b53b1, type: 3}
-    volume: 1
+    volume: 0.78
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: ToolPutdown
     clip: {fileID: 8300000, guid: 132058cbede585d43aacc42190548da5, type: 3}
-    volume: 1
+    volume: 0.78
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: LiquidPickup
     clip: {fileID: 8300000, guid: f13f6ccd5e85e654ca96a022724794f7, type: 3}
-    volume: 1
+    volume: 0.78
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: ToolPickup
     clip: {fileID: 8300000, guid: 33daca5ae60342d40aee3b22a75ec62c, type: 3}
-    volume: 1
+    volume: 0.4
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: LiquidPutdown
     clip: {fileID: 8300000, guid: 380b2d6fe2ea9a2409f6cd44f6876685, type: 3}
-    volume: 1
+    volume: 0.78
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: SewingPutdown
     clip: {fileID: 8300000, guid: 0645dc6b5e1d974439092804283cfdb0, type: 3}
-    volume: 1
+    volume: 0.78
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: GoToCredits
     clip: {fileID: 8300000, guid: 7a0e506843cfcce45badcb4137eb0731, type: 3}
-    volume: 1
+    volume: 0.78
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  rSounds:
+  - name: RandomBreath
+    clip: {fileID: 8300000, guid: af6edb08e1f686041a968120f681aff9, type: 3}
+    volume: 0.78
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: RandomGhost
+    clip: {fileID: 8300000, guid: 410eeb4da8e5d5e479b65b68e7b997c2, type: 3}
+    volume: 0.78
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: RandomLaugh
+    clip: {fileID: 8300000, guid: 08b4ba6cd22a9ab4986a13fff034f354, type: 3}
+    volume: 0.78
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: RandomWhisper
+    clip: {fileID: 8300000, guid: 57f5f9fc49e59cb4ca4ae0d069d09f33, type: 3}
+    volume: 0.78
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: RandomWhisper
+    clip: {fileID: 8300000, guid: 727c90cef4c97c545a8860dda29b53b1, type: 3}
+    volume: 0.78
     pitch: 1
     loop: 0
     source: {fileID: 0}
