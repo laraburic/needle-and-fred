@@ -169,8 +169,7 @@ public class InteractionManager : MonoBehaviour
                         Debug.Log("Interacting with ritual object: " + hit.collider.gameObject.name);
 
                         if (hit.collider.gameObject.CompareTag("DeadBody")) {
-
-                            puzzleManager.GetComponent<PuzzleManager>().CheckStep(selectedIngredient.GetComponent<IngredientComponent>().ingredientType);
+                            puzzleManager.GetComponent<PuzzleManager>().CheckStep(selectedIngredient.GetComponent<IngredientComponent>());
                         }
 
                         // Ingredient selected with equipment is consumed upon use with any ritual object

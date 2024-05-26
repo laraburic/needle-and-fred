@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class IngredientComponent : MonoBehaviour
 {
-    public IngredientsSO ingredientType;
+    //public IngredientsSO ingredientType;
 }
