@@ -18,6 +18,8 @@ public class InteractionManager : MonoBehaviour
     private Material materialToUse;
     private List<Material> bottleMaterials = new List<Material>();
     private int numberOfMaterials = 0;
+    // hint manager
+    private HintManager _hintManager;
 
     [Tooltip("Height of object when picked up")]
     public float heightOffset;
@@ -39,6 +41,7 @@ public class InteractionManager : MonoBehaviour
         playerCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         catPaw = GameObject.Find("CatPawCursor_Handle");
         puzzleManager = GameObject.Find("PuzzleManager");
+        _hintManager = GameObject.FindObjectOfType<HintManager>();
     }
 
     //=== FUNCTIONS
@@ -105,6 +108,7 @@ public class InteractionManager : MonoBehaviour
                     selectedEquipment = hit.collider.gameObject;
                     originalPosition = selectedEquipment.transform.position;
                     FindObjectOfType<AudioManager>().Play("ToolPickup");
+                    _hintManager.UpdateText(_hintManager.holdingEquipment);
                 }
 
             } else {
@@ -113,10 +117,10 @@ public class InteractionManager : MonoBehaviour
                     RaycastHit hit = CastRay(ingredientLayer);
                     if (hit.collider != null) {
                         //Debug.Log("Interacting with ingredient: " + hit.collider.gameObject.name);
-
                         // SyringeNeedle can only interact with Potions
                         if (selectedEquipment.CompareTag("SyringeNeedle") && hit.collider.gameObject.CompareTag("Potion")) {
                             selectedIngredient = hit.collider.gameObject;
+                            _hintManager.UpdateText(_hintManager.hasIngredient);
                             //Debug.Log("Clicked on " + selectedIngredient.transform.name);
                             // Find and store all of the materials on the bottle
                             numberOfMaterials = selectedIngredient.GetComponentInChildren<MeshRenderer>().materials.Length;
@@ -154,7 +158,7 @@ public class InteractionManager : MonoBehaviour
                     } else {
                         // Put equipment back down on table if no ingredient clicked
                         Debug.Log("No ingredient detected");
-
+                        _hintManager.UpdateText(_hintManager.notHoldingEquipment);
                         selectedEquipment.transform.position = originalPosition;
                         selectedEquipment = null;
                         FindObjectOfType<AudioManager>().Play("ToolPutdown");
