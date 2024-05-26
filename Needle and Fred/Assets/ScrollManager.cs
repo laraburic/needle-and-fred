@@ -33,6 +33,10 @@ public class ScrollManager : MonoBehaviour
         }
     }
 
+    public void PlayAudio() {
+        
+    }
+
     void Update() {
         if (Input.GetMouseButtonDown(0)) {
             RaycastHit scrollHit = CastRay(scrollLayer);
@@ -41,6 +45,7 @@ public class ScrollManager : MonoBehaviour
                 foreach (Transform t in scrollUI.GetComponentInChildren<Transform>()) {
                     t.gameObject.SetActive(true);
                 }
+                PlayAudio();
                 freezeCam.DeactivateNoise();
             }
         }
