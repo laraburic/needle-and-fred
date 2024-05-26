@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PuzzleManager : MonoBehaviour
 {
@@ -145,6 +146,7 @@ public class PuzzleManager : MonoBehaviour
         else {
             Debug.Log("All recipes completed - YOU WIN");
             puzzleEnabled = false;
+            Invoke("Credits", 5);
         }
     }
 
@@ -154,5 +156,12 @@ public class PuzzleManager : MonoBehaviour
             candleFlames[i].SetActive(true);
             candleSmokes[i].SetActive(false);
         }
+    }
+
+    void Credits() {
+        Debug.Log("Loading Credits...");
+        SceneManager.LoadScene(2);
+        AudioListener.pause = false;
+        FindObjectOfType<AudioManager>().Play("GoToCredits");
     }
 }
