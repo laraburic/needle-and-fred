@@ -21,6 +21,7 @@ public class PuzzleManager : MonoBehaviour
     public GameObject riddleText;
     public GameObject zombieModel;
     public GameObject humanModel;
+    public GameOver gameOver;
 
     void Start()
     {
@@ -91,6 +92,7 @@ public class PuzzleManager : MonoBehaviour
                 // If no more candles are lit, trigger game over state
                 if (candlesLeft == 0)
                 {
+                    gameOver.GameIsOver();
                     Debug.Log("No more candles are lit - GAME OVER");
                     puzzleEnabled = false;
                     FindObjectOfType<AudioManager>().Play("GameOver");

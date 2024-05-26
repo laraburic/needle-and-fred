@@ -56,8 +56,9 @@ MonoBehaviour:
   flamePrefab: {fileID: 5627631891330748425, guid: a131523bdb2fa4417abcc2dee5bf2e0f, type: 3}
   smokePrefab: {fileID: 9071187108008226161, guid: ad9d34491a43a400c9861b431347e4b0, type: 3}
   riddleText: {fileID: 2630634328552288635}
-  zombieModel: {fileID: 1190601789873990, guid: a8145fd98e506094980d05080bde9072, type: 3}
-  humanModel: {fileID: 343638522572748073, guid: 9854bb05e98038145add8ed7c25af4b1, type: 3}
+  zombieModel: {fileID: 0}
+  humanModel: {fileID: 9016749469606366706, guid: fd3c122c02dbbd843a66697e79b26c91, type: 3}
+  gameOver: {fileID: 0}
 --- !u!1 &2630634328552288635
 GameObject:
   m_ObjectHideFlags: 0
