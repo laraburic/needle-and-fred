@@ -859,6 +859,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: --GameOver--
       objectReference: {fileID: 0}
+    - target: {fileID: 1165367341123834631, guid: 22f83d69811b3f645bb665901027d66e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2379615198599692751, guid: 22f83d69811b3f645bb665901027d66e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -978,6 +982,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c53e1d9db05b3e4f99d66bb966db417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1054528562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4880781360134810850, guid: e0b147eddd5c2a242a434c6e7ff99e40, type: 3}
+  m_PrefabInstance: {fileID: 1252272046}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1115974761 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7895483673035683032, guid: 22f83d69811b3f645bb665901027d66e, type: 3}
@@ -1103,7 +1112,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1563395389945416580, guid: e0b147eddd5c2a242a434c6e7ff99e40, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 3216418854428585094, guid: e0b147eddd5c2a242a434c6e7ff99e40, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: e0b147eddd5c2a242a434c6e7ff99e40, type: 3}
 --- !u!1001 &1265283442
 PrefabInstance:
@@ -1174,6 +1189,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Celina
       objectReference: {fileID: 0}
+    - target: {fileID: 8212578042163576226, guid: 6c21df506221b3145a6d4cf0a59a944f, type: 3}
+      propertyPath: scrollElements.Array.data[0]
+      value: 
+      objectReference: {fileID: 1054528562}
     - target: {fileID: 8648431877096762758, guid: 6c21df506221b3145a6d4cf0a59a944f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.908351
@@ -1275,6 +1294,10 @@ PrefabInstance:
     - target: {fileID: 1165367341123834631, guid: 22f83d69811b3f645bb665901027d66e, type: 3}
       propertyPath: m_Name
       value: --PauseMenu--
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165367341123834631, guid: 22f83d69811b3f645bb665901027d66e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2379615198599692751, guid: 22f83d69811b3f645bb665901027d66e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
