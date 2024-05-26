@@ -1,0 +1,53 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 14.05.2021 15:29:11
+
+newmtl ball_large_Mat
+	Ns 9.999999
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 1.000000 1.000000 1.000000
+	Kd 1.000000 1.000000 1.000000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka ball_large_Mat_Diffuse.png
+	map_Kd ball_large_Mat_Diffuse.png
+	map_Ks ball_large_Mat_Specular.png
+	map_bump ball_large_Mat_Normal.png
+	bump ball_large_Mat_Normal.png
+
+newmtl ball_medium_Mat
+	Ns 9.999999
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 1.000000 1.000000 1.000000
+	Kd 1.000000 1.000000 1.000000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka ball_medium_Mat_Diffuse.png
+	map_Kd ball_medium_Mat_Diffuse.png
+	map_Ks ball_medium_Mat_Specular.png
+	map_bump ball_medium_Mat_Normal.png
+	bump ball_medium_Mat_Normal.png
+
+newmtl ball_small_Mat
+	Ns 9.999999
+	Ni 1.500000
+	d 1.000000
+	Tr 0.000000
+	Tf 1.000000 1.000000 1.000000 
+	illum 2
+	Ka 1.000000 1.000000 1.000000
+	Kd 1.000000 1.000000 1.000000
+	Ks 0.000000 0.000000 0.000000
+	Ke 0.000000 0.000000 0.000000
+	map_Ka ball_small_Mat_Diffuse.png
+	map_Kd ball_small_Mat_Diffuse.png
+	map_Ks ball_small_Mat_Specular.png
+	map_bump ball_small_Mat_Normal.png
+	bump ball_small_Mat_Normal.png
