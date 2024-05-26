@@ -61,10 +61,12 @@ public class PuzzleManager : MonoBehaviour
                 Debug.Log("CORRECT INGREDIENT");
                 currentStep++;
                 DestroyImmediate(displayedStep);
+                FindObjectOfType<AudioManager>().Play("CandleComplete");
                 if (currentStep > currentLevel.recipe.Count - 1)
                 {
                     Debug.Log("RECIPE COMPLETE!");
                     NewPuzzle();
+                    FindObjectOfType<AudioManager>().Play("RecipeSuccess");
                 }
                 else
                 {
@@ -77,6 +79,7 @@ public class PuzzleManager : MonoBehaviour
 
                 // Blow out candle when wrong ingredient selected
                 BlowOutCandle(candlesLeft - 1);
+                FindObjectOfType<AudioManager>().Play("CandleFail");
                 candlesLeft--;
                 Debug.Log("One candle has gone out..." + candlesLeft + " candles remaining");
 
@@ -85,6 +88,7 @@ public class PuzzleManager : MonoBehaviour
                 {
                     Debug.Log("No more candles are lit - GAME OVER");
                     puzzleEnabled = false;
+                    FindObjectOfType<AudioManager>().Play("GameOver");
                 }
             }
         }
