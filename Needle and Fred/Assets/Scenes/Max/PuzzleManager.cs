@@ -22,6 +22,7 @@ public class PuzzleManager : MonoBehaviour
     public GameObject riddleText;
     public GameObject zombieModel;
     public GameObject humanModel;
+    public GameObject portal;
     public GameOver gameOver;
 
     void Start()
@@ -105,6 +106,7 @@ public class PuzzleManager : MonoBehaviour
     void SwapModels()
     {
         // Instantiate the new model in the same position, rotation, and scale as the current model
+        GameObject portalInstance = Instantiate(portal, zombieModel.transform.position, zombieModel.transform.rotation);
         GameObject humanModelInstance = Instantiate(humanModel, zombieModel.transform.position, zombieModel.transform.rotation);
         humanModelInstance.transform.localScale = zombieModel.transform.localScale;
 
@@ -148,7 +150,7 @@ public class PuzzleManager : MonoBehaviour
         else {
             Debug.Log("All recipes completed - YOU WIN");
             puzzleEnabled = false;
-            Invoke("Credits", 5);
+            Invoke("Credits", 4.5f);
         }
     }
 

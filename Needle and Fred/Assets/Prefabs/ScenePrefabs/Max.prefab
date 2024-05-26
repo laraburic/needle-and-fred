@@ -58,6 +58,7 @@ MonoBehaviour:
   riddleText: {fileID: 2630634328552288635}
   zombieModel: {fileID: 0}
   humanModel: {fileID: 9016749469606366706, guid: fd3c122c02dbbd843a66697e79b26c91, type: 3}
+  portal: {fileID: 7986504087968017091, guid: 12a56ee4630040c4eb17ae9707ed4cef, type: 3}
   gameOver: {fileID: 0}
 --- !u!1 &2630634328552288635
 GameObject:
