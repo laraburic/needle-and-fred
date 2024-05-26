@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
-using static UnityEngine.Rendering.VirtualTexturing.Debugging;
+//using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
 public class InteractionManager : MonoBehaviour
 {
