@@ -14,6 +14,10 @@ public class InteractionManager : MonoBehaviour
     // highlight equipment logic
     private GameObject highlightedEquipment;
     private GameObject lastHighlightedEquipment;
+    // for finding the right material on potion bottles to update the syringe
+    private Material materialToUse;
+    private List<Material> bottleMaterials = new List<Material>();
+    private int numberOfMaterials = 0;
 
     [Tooltip("Height of object when picked up")]
     public float heightOffset;
@@ -107,19 +111,33 @@ public class InteractionManager : MonoBehaviour
                 if (selectedIngredient == null) {
                     // If equipment is currently being held, check for interaction with ingredients
                     RaycastHit hit = CastRay(ingredientLayer);
-
                     if (hit.collider != null) {
-                        Debug.Log("Interacting with ingredient: " + hit.collider.gameObject.name);
+                        //Debug.Log("Interacting with ingredient: " + hit.collider.gameObject.name);
 
                         // SyringeNeedle can only interact with Potions
                         if (selectedEquipment.CompareTag("SyringeNeedle") && hit.collider.gameObject.CompareTag("Potion")) {
                             selectedIngredient = hit.collider.gameObject;
-                            selectedEquipment.GetComponentInChildren<MeshRenderer>().material = selectedIngredient.GetComponent<MeshRenderer>().material;
-                            FindObjectOfType<AudioManager>().Play("LiquidPickup");
+                            //Debug.Log("Clicked on " + selectedIngredient.transform.name);
+                            // Find and store all of the materials on the bottle
+                            numberOfMaterials = selectedIngredient.GetComponent<MeshRenderer>().materials.Length;
+                            for (int i = 0; i < numberOfMaterials; i++) {
+                                bottleMaterials.Add(selectedIngredient.GetComponent<MeshRenderer>().materials[i]);
+                            }
+                            // Look for the bottle material that says "GLASS"
+                            foreach (Material mat in bottleMaterials) {
+                                if (mat.name.Contains("GLASS")) {
+                                    materialToUse = mat;
+                                }
+                            }
+                            selectedEquipment.GetComponentInChildren<MeshRenderer>().material = materialToUse;
+                            //Debug.Log("Updating " + selectedEquipment.transform.name + "'s MeshRenderer to " + materialToUse);
                             // If the object has child game objects, update all of the colours on the children as well 
                             if (selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>() != null) {
-                                selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>().UpdateChildColours(selectedIngredient.GetComponent<MeshRenderer>().material);
+                                selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>().UpdateChildColours(materialToUse);
                             }
+                            
+                            FindObjectOfType<AudioManager>().Play("LiquidPickup");
+                            
                         } 
 
                         // SewingNeedle can only interact with Thread
