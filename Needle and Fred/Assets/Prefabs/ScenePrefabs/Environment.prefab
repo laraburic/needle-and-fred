@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93de5b5dcf0432c4cbe7bea3c7595445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dontTriggerAtStart: 0
+  dontTriggerAtStart: 1
   scrollUI: {fileID: 3286354361316820315}
   freezeCam: {fileID: 3243642121253589356}
   scrollLayer:
