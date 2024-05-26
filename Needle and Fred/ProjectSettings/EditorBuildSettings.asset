@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Mike/LevelNavigation/StartMenu.unity
     guid: 143c6104c593b584fa2bba6bd60cfe10
   - enabled: 1
-    path: Assets/Scenes/Mike/LevelNavigation/TESTLEVEL.unity
-    guid: 08fa65c2dfcc94d43a19f5c359db3f8a
+    path: Assets/Scenes/Game.unity
+    guid: 04c883d619f6e7d4488eb46a578c55c4
   - enabled: 1
     path: Assets/Scenes/Mike/LevelNavigation/Credits.unity
     guid: 073b9a672d08e094382ab5a03163f69a
