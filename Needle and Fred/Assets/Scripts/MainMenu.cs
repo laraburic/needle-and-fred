@@ -9,7 +9,8 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         Debug.Log("Game Start");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void PlayWitch()
