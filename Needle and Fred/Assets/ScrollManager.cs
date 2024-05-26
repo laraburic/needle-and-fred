@@ -31,6 +31,9 @@ public class ScrollManager : MonoBehaviour
             RaycastHit scrollHit = CastRay(scrollLayer);
             if (scrollHit.collider != null) {
                 scrollUI.SetActive(true);
+                foreach (Transform t in scrollUI.GetComponentInChildren<Transform>()) {
+                    t.gameObject.SetActive(true);
+                }
                 freezeCam.DeactivateNoise();
             }
         }

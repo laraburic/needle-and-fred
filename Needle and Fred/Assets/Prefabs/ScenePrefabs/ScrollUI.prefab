@@ -446,10 +446,12 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Dearest Fred,\n\nWhilst I'm at the annual Witches' Broomstick Maintanence
     and Polishing Convention I'm leaving you in charge. \n\nYou, my whiskered apprentice,
-    must practise your catnomancy skills and try to summon a creature!\n\nIf you
-    succeed, you will be handsomely rewarded with premium-grade magical catnip, the
-    kind that makes you see rainbows and flying mice. \n\nMay your paws be steady
-    - \nGladis the Witch."
+    must practise your catnomancy skills and bring my trusted Zombo back to life.
+    \n\nFirst grab the equipment and combine it with the right ingredients then insert
+    it into Zomboid to complete each steps of the ritual.\n\nIf you succeed, you
+    will be handsomely rewarded with premium-grade magical catnip, the kind that
+    makes you see rainbows and flying mice. \n\nMay your paws be steady - \nGladis
+    the Witch."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 70d70f6cc41bb4343be8ad3b5797d65b, type: 2}
   m_sharedMaterial: {fileID: 6763118111917089972, guid: 70d70f6cc41bb4343be8ad3b5797d65b, type: 2}
@@ -476,8 +478,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35.39
-  m_fontSizeBase: 35.39
+  m_fontSize: 34.13
+  m_fontSizeBase: 34.13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -486,9 +488,9 @@ MonoBehaviour:
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: -4.83
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -13.22
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -773,18 +775,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2863260730753196492}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 2342439486379566852}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -825,6 +815,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: FreezeCamera, Assembly-CSharp
         m_MethodName: ReactivateNoise
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6588229788490340364}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -925,10 +927,5 @@ PrefabInstance:
 --- !u!4 &1098547706321295734 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8629183882964464254, guid: f31df9334751af442bc62051e988ce50, type: 3}
-  m_PrefabInstance: {fileID: 8718923060440640264}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2863260730753196492 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6864486536983349956, guid: f31df9334751af442bc62051e988ce50, type: 3}
   m_PrefabInstance: {fileID: 8718923060440640264}
   m_PrefabAsset: {fileID: 0}
