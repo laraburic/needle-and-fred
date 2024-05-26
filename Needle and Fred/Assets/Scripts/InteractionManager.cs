@@ -24,6 +24,7 @@ public class InteractionManager : MonoBehaviour
     private ScrollManager _scrollManager;
     private bool _scrollOpen = true;
     public List<GameObject> scrollElements;
+    public GameObject scrollAudio;
 
     [Tooltip("Height of object when picked up")]
     public float heightOffset;
@@ -47,6 +48,7 @@ public class InteractionManager : MonoBehaviour
         catPaw = GameObject.Find("CatPawCursor_Handle");
         puzzleManager = GameObject.Find("PuzzleManager");
         _hintManager = GameObject.FindObjectOfType<HintManager>();
+        
     }
 
     //=== FUNCTIONS
@@ -118,7 +120,7 @@ public class InteractionManager : MonoBehaviour
                         foreach (GameObject o in scrollElements) {
                             o.SetActive(true);
                         }
-                        
+                        scrollAudio.GetComponent<AudioSource>().Play();
                     }
                 }
             }
@@ -129,6 +131,7 @@ public class InteractionManager : MonoBehaviour
                 foreach (GameObject o in scrollElements) {
                     o.SetActive(false);
                 }
+                scrollAudio.GetComponent<AudioSource>().Play();
             }
             
             // ----------------------------------
