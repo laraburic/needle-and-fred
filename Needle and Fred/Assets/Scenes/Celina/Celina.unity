@@ -758,6 +758,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4638277439440853130, guid: e906b35a4dd1e844ea6e2df6beff736c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6942616155120782508, guid: e906b35a4dd1e844ea6e2df6beff736c, type: 3}
       propertyPath: m_Name
       value: CatPawCursor_Handle
@@ -802,7 +806,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4638277439440853130, guid: e906b35a4dd1e844ea6e2df6beff736c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
