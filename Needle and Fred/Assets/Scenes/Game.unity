@@ -1190,6 +1190,10 @@ PrefabInstance:
       value: Celina
       objectReference: {fileID: 0}
     - target: {fileID: 8212578042163576226, guid: 6c21df506221b3145a6d4cf0a59a944f, type: 3}
+      propertyPath: scrollAudio
+      value: 
+      objectReference: {fileID: 2127372660}
+    - target: {fileID: 8212578042163576226, guid: 6c21df506221b3145a6d4cf0a59a944f, type: 3}
       propertyPath: scrollElements.Array.data[0]
       value: 
       objectReference: {fileID: 1054528562}
@@ -1279,6 +1283,11 @@ VideoPlayer:
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
+--- !u!1 &2127372660 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9165834835442525994, guid: e0b147eddd5c2a242a434c6e7ff99e40, type: 3}
+  m_PrefabInstance: {fileID: 1252272046}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1359429569993031448
 PrefabInstance:
   m_ObjectHideFlags: 0
