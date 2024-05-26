@@ -170,7 +170,7 @@ public class InteractionManager : MonoBehaviour
 
                         if (hit.collider.gameObject.CompareTag("DeadBody")) {
                             // SOUND TO PUT INGREDIENT IN DEAD BODY
-                            puzzleManager.GetComponent<PuzzleManager>().CheckStep(selectedIngredient.GetComponent<IngredientComponent>().ingredientType);
+                            puzzleManager.GetComponent<PuzzleManager>().CheckStep(selectedIngredient.transform.name);
                         }
                         else if (hit.collider.gameObject.CompareTag("Discard")) {
                             // SOUND TO PUT INGREDIENT IN CAULDRON
