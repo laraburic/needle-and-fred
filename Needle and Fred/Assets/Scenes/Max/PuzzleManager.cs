@@ -1,135 +1,145 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class PuzzleManager : MonoBehaviour
 {
-    private bool puzzleEnabled;
-    
-    // Level tracking
-    public int currentLevel;
-    public List<Level> levels;
-    
-    // Riddle logic
-    public GameObject riddleText;
-    
-    // Candle logic
+    public int levelNumber;
+    public LevelListSO levels;
     public GameObject[] candles;
     public GameObject displaySpawn;
     public GameObject flamePrefab; // Flame particle prefab
     public GameObject smokePrefab; // Smoke particle prefab
+    private LevelDataSO currentLevel;
     private int currentStep;
     private int candlesLeft;
+    private GameObject displayedStep;
+    private bool puzzleEnabled;
+
     private List<GameObject> candleFlames = new List<GameObject>(); // List to hold flame particle systems
     private List<GameObject> candleSmokes = new List<GameObject>(); // List to hold smoke particle systems
-    
-    // Steps
-    private GameObject displayedStep;
-    private int numberOfSteps;
-    
-    private void Start()
+
+    void Start()
     {
-        // Puzzle Logic ----
-        puzzleEnabled = true; // Enable puzzles at the start of game
-        // TODO : Show first step of recipe
-        //DisplayIngredient();
-        
-        // Levels and steps ----
-        currentLevel = 0; // Set the current level
-        numberOfSteps = levels[currentLevel].steps.Count; // Get how many steps are in current level
-        currentStep = 0; // Set currentStep as 0
-        
-        // Candles ----
+        // Get current level into manager, set currentStep as 0
+        levelNumber = 0;
+        currentLevel = levels.recipes[levelNumber];
+        currentStep = 0;
         candlesLeft = candles.Length; // Initialize candles left based on array length
-        for (int i = 0; i < candles.Length; i++) {
+
+        // Initialize candles with particle systems
+        for (int i = 0; i < candles.Length; i++)
+        {
             // Instantiate flame and smoke particles
             GameObject flame = Instantiate(flamePrefab, candles[i].transform);
             GameObject smoke = Instantiate(smokePrefab, candles[i].transform);
+
             // Position the particle systems with a slight offset along the Y-axis
             flame.transform.localPosition = new Vector3(0f, 1.5f, 0f); // Adjust the Y value as needed
             smoke.transform.localPosition = new Vector3(0f, 1.5f, 0f); // Adjust the Y value as needed
+        
             smoke.SetActive(false); // Disable smoke initially
+
             candleFlames.Add(flame);
             candleSmokes.Add(smoke);
         }
-        // Riddle ----
-        DisplayRiddle();
-        //Debug.Log("Current level: " + currentLevel + " current step: " + currentStep);
-        //Debug.Log("Current ingredient: " + levels[currentLevel].steps[currentStep].ingredient);
-        //Debug.Log("Current riddle: " + levels[currentLevel].steps[currentStep].riddle);
-        //Debug.Log("Completed?: " + levels[currentLevel].steps[currentStep].complete);
+
+        // Enable puzzles at the start of game
+        puzzleEnabled = true;
+        // Show first step of recipe
+        DisplayIngredient();
     }
 
-    void DisplayRiddle() {
-        riddleText.GetComponent<TMP_Text>().SetText(levels[currentLevel].steps[currentStep].riddle);
-    }
-    
-    public void CheckStep(IngredientComponent ingredientComponent) {
-        if (puzzleEnabled) {
-            // If CORRECT ingredient
-            if (ingredientComponent.transform.name == levels[currentLevel].steps[currentStep].ingredient) {
+    // Check the selected ingredient matches the current step in the recipe
+    public void CheckStep(IngredientsSO selectedIngredient)
+    {
+        if (puzzleEnabled)
+        {
+            Debug.Log("Checking ingredient:" + selectedIngredient.ingredientType + " against recipe step:" + currentLevel.recipe[currentStep].ingredientType);
+            if (selectedIngredient == currentLevel.recipe[currentStep])
+            {
                 Debug.Log("CORRECT INGREDIENT");
                 currentStep++;
-                // If LEVEL COMPLETE
-                if (currentStep > numberOfSteps - 1) {
-                    levels[currentLevel].levelComplete = true;
-                    Debug.Log("LEVEL COMPLETE!");
+                DestroyImmediate(displayedStep);
+                FindObjectOfType<AudioManager>().Play("CandleComplete");
+                if (currentStep > currentLevel.recipe.Count - 1)
+                {
+                    Debug.Log("RECIPE COMPLETE!");
+                    NewPuzzle();
+                    FindObjectOfType<AudioManager>().Play("RecipeSuccess");
                 }
-                // IF LEVEL NOT COMPLETE
-                else {
-                    DisplayRiddle(); // display next riddle
-                    Debug.Log("Displaying next step");
+                else
+                {
+                    DisplayIngredient();
                 }
             }
-            // If WRONG ingredient
-            else {
+            else
+            {
                 Debug.Log("WRONG INGREDIENT");
-                BlowOutCandles(candlesLeft -1);
+
+                // Blow out candle when wrong ingredient selected
+                BlowOutCandle(candlesLeft - 1);
+                FindObjectOfType<AudioManager>().Play("CandleFail");
                 candlesLeft--;
                 Debug.Log("One candle has gone out..." + candlesLeft + " candles remaining");
-                // Game over if all candles go out
-                if (candlesLeft == 0) {
+
+                // If no more candles are lit, trigger game over state
+                if (candlesLeft == 0)
+                {
                     Debug.Log("No more candles are lit - GAME OVER");
                     puzzleEnabled = false;
+                    FindObjectOfType<AudioManager>().Play("GameOver");
                 }
-
             }
-            
         }
-        
     }
 
-    // TODO - Add more levels if time
-    /*public void NextLevel() {
-        // Move to next level
-        currentLevel++;
-        // Check if there is another level, otherwise game is complete
-        if (currentLevel < levels.Count) {
-            currentStep = 0;
-            //TODO : DisplayIngredient();
-            ResetCandles(); // Reset candles for the new level
+    void BlowOutCandle(int candleIndex)
+{
+        candleFlames[candleIndex].SetActive(false);
+        candleSmokes[candleIndex].SetActive(true);
+        
+        // Play the audio clip when the candle's flame goes out
+        AudioSource audioSource = candles[candleIndex].GetComponent<AudioSource>();
+        if (audioSource != null)
+        {
+            audioSource.Play();
         }
-        else {
+}
+
+    // Display current step in recipe by spawning that object
+    void DisplayIngredient()
+    {
+        Debug.Log("Displaying next ingredient: " + currentLevel.recipe[currentStep].ingredientType);
+        displayedStep = Instantiate(currentLevel.recipe[currentStep].displayPrefab, displaySpawn.transform);
+    }
+
+    // Initiate next recipe if still more levels, otherwise trigger win state
+    void NewPuzzle()
+    {
+        // Move to next level
+        levelNumber++;
+        // Check if there is another level, otherwise game is complete
+        if (levelNumber < levels.recipes.Count)
+        {
+            currentLevel = levels.recipes[levelNumber];
+            currentStep = 0;
+            DisplayIngredient();
+            // Reset candles for the new level
+            ResetCandles();
+        }
+        else
+        {
             Debug.Log("All recipes completed - YOU WIN");
             puzzleEnabled = false;
         }
-    }*/
-
-    void BlowOutCandles(int candleIndex) {
-        candleFlames[candleIndex].SetActive(false);
-        candleSmokes[candleIndex].SetActive(true);
-        // Play the audio clip when the candle's flame goes out
-        AudioSource audioSource = candles[candleIndex].GetComponent<AudioSource>();
-        if (audioSource != null) {
-            audioSource.Play();
-        }
     }
-   
-    void ResetCandles() {
+
+    void ResetCandles()
+    {
         candlesLeft = candles.Length;
-        for (int i = 0; i < candles.Length; i++) {
+        for (int i = 0; i < candles.Length; i++)
+        {
             candleFlames[i].SetActive(true);
             candleSmokes[i].SetActive(false);
         }

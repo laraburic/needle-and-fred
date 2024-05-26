@@ -69,20 +69,20 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: CatSuccess
-    clip: {fileID: 8300000, guid: 4cfdea4fbcfd1bb40b8028c0f46e07e4, type: 3}
+  - name: RecipeSuccess
+    clip: {fileID: 8300000, guid: 18f1144af5dc7e342916163777aaac75, type: 3}
     volume: 0.78
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: CandleComplete
-    clip: {fileID: 8300000, guid: 7a0e506843cfcce45badcb4137eb0731, type: 3}
+    clip: {fileID: 8300000, guid: adc98d8141afbdf419acaf565ca69bbf, type: 3}
     volume: 0.78
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: CandleFail
-    clip: {fileID: 8300000, guid: 1689058eeeb072842b8c76940508c2a7, type: 3}
+    clip: {fileID: 8300000, guid: 1faa9192e31647a4b922cdb7954d25b1, type: 3}
     volume: 0.78
     pitch: 1
     loop: 0
@@ -119,6 +119,12 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: GoToCredits
     clip: {fileID: 8300000, guid: 7a0e506843cfcce45badcb4137eb0731, type: 3}
+    volume: 0.78
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GameOver
+    clip: {fileID: 8300000, guid: 1689058eeeb072842b8c76940508c2a7, type: 3}
     volume: 0.78
     pitch: 1
     loop: 0

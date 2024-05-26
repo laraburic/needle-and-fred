@@ -119,7 +119,7 @@ public class InteractionManager : MonoBehaviour
                             selectedIngredient = hit.collider.gameObject;
                             //Debug.Log("Clicked on " + selectedIngredient.transform.name);
                             // Find and store all of the materials on the bottle
-                            numberOfMaterials = selectedIngredient.GetComponent<MeshRenderer>().materials.Length;
+                            numberOfMaterials = selectedIngredient.GetComponentInChildren<MeshRenderer>().materials.Length;
                             for (int i = 0; i < numberOfMaterials; i++) {
                                 bottleMaterials.Add(selectedIngredient.GetComponent<MeshRenderer>().materials[i]);
                             }
@@ -143,11 +143,11 @@ public class InteractionManager : MonoBehaviour
                         // SewingNeedle can only interact with Thread
                         else if (selectedEquipment.CompareTag("SewingNeedle") && hit.collider.gameObject.CompareTag("Thread")) {
                             selectedIngredient = hit.collider.gameObject;
-                            selectedEquipment.GetComponentInChildren<MeshRenderer>().material = selectedIngredient.GetComponent<MeshRenderer>().material;
+                            selectedEquipment.GetComponentInChildren<MeshRenderer>().material = selectedIngredient.GetComponentInChildren<MeshRenderer>().material;
                            /* FindObjectOfType<AudioManager>().Play("");*/
                             // If the object has child game objects, update all of the colours on the children as well 
                             if (selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>() != null) {
-                                selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>().UpdateChildColours(selectedIngredient.GetComponent<MeshRenderer>().material);
+                                selectedEquipment.GetComponentInChildren<UpdateColoursOnChildren>().UpdateChildColours(selectedIngredient.GetComponentInChildren<MeshRenderer>().material);
                             }
                         }
                         
@@ -169,7 +169,12 @@ public class InteractionManager : MonoBehaviour
                         Debug.Log("Interacting with ritual object: " + hit.collider.gameObject.name);
 
                         if (hit.collider.gameObject.CompareTag("DeadBody")) {
-                            puzzleManager.GetComponent<PuzzleManager>().CheckStep(selectedIngredient.GetComponent<IngredientComponent>());
+                            // SOUND TO PUT INGREDIENT IN DEAD BODY
+                            puzzleManager.GetComponent<PuzzleManager>().CheckStep(selectedIngredient.GetComponent<IngredientComponent>().ingredientType);
+                        }
+                        else if (hit.collider.gameObject.CompareTag("Discard")) {
+                            // SOUND TO PUT INGREDIENT IN CAULDRON
+
                         }
 
                         // Ingredient selected with equipment is consumed upon use with any ritual object
