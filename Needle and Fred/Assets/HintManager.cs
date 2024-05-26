@@ -38,6 +38,7 @@ public class HintManager : MonoBehaviour
     }
 
     public void UpdateText(string text) {
+        textHint.SetText("");
         textHint.SetText(text);
     }
     

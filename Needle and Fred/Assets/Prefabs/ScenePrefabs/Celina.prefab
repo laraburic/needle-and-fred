@@ -79,6 +79,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3912f564022112488a8077612c2613b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollElements:
+  - {fileID: 0}
   heightOffset: 4
   emptySyringeNeedleMaterial: {fileID: 2100000, guid: 6d5f62c4716392b47a2e4c9d2e65df4f, type: 2}
   emptySewingNeedleMaterial: {fileID: 2100000, guid: ea1d6491eb7fe3f48a0afe0e9ea544fe, type: 2}
@@ -91,6 +93,9 @@ MonoBehaviour:
   ritualLayer:
     serializedVersion: 2
     m_Bits: 128
+  scrollLayer:
+    serializedVersion: 2
+    m_Bits: 256
   allObjectsLayer:
     serializedVersion: 2
     m_Bits: 4294967295

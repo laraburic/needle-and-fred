@@ -6,48 +6,58 @@ using UnityEngine;
 
 public class ScrollManager : MonoBehaviour
 {
+    public bool scrollOpen;
     private Camera playerCamera;
+    public GameObject audio;
     public bool dontTriggerAtStart = false;
     public GameObject scrollUI;
     public FreezeCamera freezeCam;
-    public LayerMask scrollLayer; // for opening and closing the scroll
+    //public LayerMask scrollLayer; // for opening and closing the scroll
 
     private void Start() {
-        playerCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
-        if (Application.isEditor) {
-            if (dontTriggerAtStart) {
-                scrollUI.SetActive(false);
-            }
-        }
-        if (Application.isEditor){
-            if (!dontTriggerAtStart) {
-                scrollUI.SetActive(true);
-            }
-        }
+        freezeCam.DeactivateNoise();
+        scrollOpen = true;
+        scrollUI.SetActive(true);
     }
-
-    private void OnEnable()
-    {
-        if (!Application.isEditor) {
-            scrollUI.SetActive(true);
-        }
-    }
-
     public void PlayAudio() {
-        
+        //audio.GetComponent<AudioSource>().Play();
+    }
+
+    public void OpenScroll()
+    {
+        scrollOpen = true;
+        scrollUI.SetActive(true);
+        freezeCam.DeactivateNoise();
+    }
+    
+    public void CloseScroll()
+    {
+        scrollUI.SetActive(false);
+        freezeCam.ReactivateNoise();
     }
 
     void Update() {
         if (Input.GetMouseButtonDown(0)) {
-            RaycastHit scrollHit = CastRay(scrollLayer);
-            if (scrollHit.collider != null) {
-                scrollUI.SetActive(true);
-                foreach (Transform t in scrollUI.GetComponentInChildren<Transform>()) {
-                    t.gameObject.SetActive(true);
+
+            /*// IF SCROLL ISNT OPEN
+            if (scrollOpen != true) {
+                RaycastHit scrollHit = CastRay(scrollLayer);
+                if (scrollHit.collider != null)
+                {
+                    Debug.Log("Clicked on scroll");
+                    scrollOpen = true;
+                    
+                    //PlayAudio();
+                    
                 }
-                PlayAudio();
-                freezeCam.DeactivateNoise();
             }
+            // IF SCROLL IS OPEN
+            if (scrollOpen == true) {
+                scrollOpen = false;
+                scrollUI.SetActive(false);
+                //PlayAudio();
+                
+            }*/
         }
     }
     private RaycastHit CastRay(LayerMask layer) {

@@ -20,6 +20,10 @@ public class InteractionManager : MonoBehaviour
     private int numberOfMaterials = 0;
     // hint manager
     private HintManager _hintManager;
+    // scroll manager
+    private ScrollManager _scrollManager;
+    private bool _scrollOpen = true;
+    public List<GameObject> scrollElements;
 
     [Tooltip("Height of object when picked up")]
     public float heightOffset;
@@ -31,6 +35,7 @@ public class InteractionManager : MonoBehaviour
     public LayerMask equipmentLayer;
     public LayerMask ingredientLayer;
     public LayerMask ritualLayer;
+    public LayerMask scrollLayer;
     public LayerMask allObjectsLayer;
 
     private GameObject puzzleManager;
@@ -98,6 +103,36 @@ public class InteractionManager : MonoBehaviour
         // ----------------------------------
 
         if (Input.GetMouseButtonDown(0)) {
+            
+            // scroll logic ---
+            
+            // IF SCROLL ISNT OPEN AND PLAYER CLICKED
+            if (_scrollOpen == false) {
+                RaycastHit scrollHit = CastRay(scrollLayer);
+                // IF MOUSE CLICKED ON A SCROLL
+                if (scrollHit.collider != null) {
+                    // OPEN THE SCROLL
+                    if (_scrollOpen == false) {
+                        _scrollOpen = true;
+                        Debug.Log("Hit scroll");
+                        foreach (GameObject o in scrollElements) {
+                            o.SetActive(true);
+                        }
+                        
+                    }
+                }
+            }
+            // OTHERWISE CLOSE IT
+            else
+            {
+                _scrollOpen = false;
+                foreach (GameObject o in scrollElements) {
+                    o.SetActive(false);
+                }
+            }
+            
+            // ----------------------------------
+            
             if (selectedEquipment == null) {
 
                 // If equipment is not currently being held, check for interaction with equipment
