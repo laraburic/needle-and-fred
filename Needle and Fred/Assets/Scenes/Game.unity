@@ -775,10 +775,17 @@ PrefabInstance:
       value: 0.65111786
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7405750504463341148, guid: ba3aba75e757f024598dfed21a102ea1, type: 3}
+    - {fileID: 5669299502744447635, guid: ba3aba75e757f024598dfed21a102ea1, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba3aba75e757f024598dfed21a102ea1, type: 3}
+--- !u!1 &143094705 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9010133894691268000, guid: ba3aba75e757f024598dfed21a102ea1, type: 3}
+  m_PrefabInstance: {fileID: 86563333}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &501948615
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -884,6 +891,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2036096802883720408, guid: d3ad24930354eaa48a6481484dd4bf50, type: 3}
+      propertyPath: humanModel
+      value: 
+      objectReference: {fileID: 9016749469606366706, guid: fd3c122c02dbbd843a66697e79b26c91, type: 3}
+    - target: {fileID: 2036096802883720408, guid: d3ad24930354eaa48a6481484dd4bf50, type: 3}
+      propertyPath: zombieModel
+      value: 
+      objectReference: {fileID: 143094705}
     - target: {fileID: 8983059188534570830, guid: d3ad24930354eaa48a6481484dd4bf50, type: 3}
       propertyPath: m_Name
       value: Max

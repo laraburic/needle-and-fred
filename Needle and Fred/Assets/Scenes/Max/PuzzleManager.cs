@@ -19,6 +19,8 @@ public class PuzzleManager : MonoBehaviour
     private List<GameObject> candleFlames = new List<GameObject>(); // List to hold flame particle systems
     private List<GameObject> candleSmokes = new List<GameObject>(); // List to hold smoke particle systems
     public GameObject riddleText;
+    public GameObject zombieModel;
+    public GameObject humanModel;
 
     void Start()
     {
@@ -67,6 +69,7 @@ public class PuzzleManager : MonoBehaviour
                 if (currentStep > numberOfSteps - 1)
                 {
                     Debug.Log("RECIPE COMPLETE!");
+                    SwapModels();
                     NewPuzzle();
                     FindObjectOfType<AudioManager>().Play("RecipeSuccess");
                 }
@@ -96,12 +99,28 @@ public class PuzzleManager : MonoBehaviour
         }
     }
 
-    void BlowOutCandle(int candleIndex) {
+    void SwapModels()
+    {
+        // Instantiate the new model in the same position, rotation, and scale as the current model
+        GameObject humanModelInstance = Instantiate(humanModel, zombieModel.transform.position, zombieModel.transform.rotation);
+        humanModelInstance.transform.localScale = zombieModel.transform.localScale;
+
+        //Add the new model to the scene
+        humanModelInstance.SetActive(true);
+
+        // Destroy the current model after a short delay to ensure a smooth transition
+        Destroy(zombieModel, 0.1f);
+    }
+
+
+    void BlowOutCandle(int candleIndex)
+    {
         candleFlames[candleIndex].SetActive(false);
         candleSmokes[candleIndex].SetActive(true);
         // Play the audio clip when the candle's flame goes out
         AudioSource audioSource = candles[candleIndex].GetComponent<AudioSource>();
-        if (audioSource != null) {
+        if (audioSource != null)
+        {
             audioSource.Play();
         }
     }

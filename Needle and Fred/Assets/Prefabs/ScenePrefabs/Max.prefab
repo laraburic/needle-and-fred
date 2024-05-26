@@ -44,10 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0203954313264984daf62848f43a36f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevel: 0
   levels:
   - {fileID: 11400000, guid: eeed6bfb598a3e040a70e8f6c9a136a3, type: 2}
-  riddleText: {fileID: 2630634328552288635}
   candles:
   - {fileID: 6477642052326601023}
   - {fileID: 2129595458947574037}
@@ -57,6 +55,9 @@ MonoBehaviour:
   displaySpawn: {fileID: 5569034563200402737}
   flamePrefab: {fileID: 5627631891330748425, guid: a131523bdb2fa4417abcc2dee5bf2e0f, type: 3}
   smokePrefab: {fileID: 9071187108008226161, guid: ad9d34491a43a400c9861b431347e4b0, type: 3}
+  riddleText: {fileID: 2630634328552288635}
+  zombieModel: {fileID: 1190601789873990, guid: a8145fd98e506094980d05080bde9072, type: 3}
+  humanModel: {fileID: 343638522572748073, guid: 9854bb05e98038145add8ed7c25af4b1, type: 3}
 --- !u!1 &2630634328552288635
 GameObject:
   m_ObjectHideFlags: 0
