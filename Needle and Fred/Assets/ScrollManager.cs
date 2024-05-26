@@ -25,7 +25,14 @@ public class ScrollManager : MonoBehaviour
             }
         }
     }
-    
+
+    private void OnEnable()
+    {
+        if (!Application.isEditor) {
+            scrollUI.SetActive(true);
+        }
+    }
+
     void Update() {
         if (Input.GetMouseButtonDown(0)) {
             RaycastHit scrollHit = CastRay(scrollLayer);
