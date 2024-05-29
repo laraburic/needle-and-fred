@@ -41,6 +41,8 @@ Witch Gladis has left you, her trusted necromancer-cat-in-training, a task to tu
 
 ![Puzzle Gameplay](</In-Game Screenshots/Game_Puzzle.gif>)  
 
+![Game Win](</In-Game Screenshots/Game_Win.gif>)  
+
 
 <br /> 
 
